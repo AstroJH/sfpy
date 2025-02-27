@@ -7,6 +7,12 @@ def sfdata(ts:NDArray[float64],
            vals:NDArray[float64],
            errs:NDArray[float64],
            z:float64=0):
+    mask = ~(np.isnan(ts) | np.isnan(vals) | np.isnan(errs))
+    ts = ts[mask]
+    vals = vals[mask]
+    errs = errs[mask]
+
+
     if len(ts) < 2:
         return np.array([]), np.array([]), np.array([])
     
